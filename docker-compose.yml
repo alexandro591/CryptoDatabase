@@ -1,0 +1,26 @@
+version: '3.5'
+
+networks:
+  CryptoNetwork:
+    name: CryptoNetwork
+    ipam:
+      config:
+        - subnet: 10.20.20.0/24
+
+services:
+  db:
+    container_name: cryptodatabase
+    build: .
+    image: 'cryptodatabase'
+    networks:
+      CryptoNetwork:
+        ipv4_address: 10.20.20.10
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_USER: cryptodatabase
+      MYSQL_ROOT_PASSWORD: cryptodatabase
+      MYSQL_DATABASE: cryptodatabase
+      MYSQL_USER: cryptodatabase
+      MYSQL_PASSWORD: cryptodatabase
+    restart: always
